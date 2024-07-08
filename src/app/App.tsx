@@ -1,10 +1,10 @@
-import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { renderRoutes } from 'react-router-config'
+import { Provider } from 'react-redux'
+import { createStore } from './store/note'
 import Head from './component/head'
 import Foot from './component/foot'
 import router from './router'
-import { createStore } from './store/note'
 import '../style/note.less'
 
 const initialState = typeof window === 'object' ? (window as any).__INITIAL_STATE__ : {}
@@ -20,15 +20,3 @@ export function Note() {
 		</Provider>
 	)
 }
-
-Note.sslLoad = async ctx => {
-	console.log('------------- index sslLoad')
-	await store.dispatch.tripDetail.getTripDetailList(ctx)
-}
-
-Note.sslState = (): any => {
-	const state = store.getState()
-	return state
-}
-
-export default Note

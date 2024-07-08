@@ -1,4 +1,4 @@
-import { ReactElement } from 'react'
+import { RouteConfig } from 'react-router-config'
 import withLoadable from '../util/withLoadable'
 
 const Index = withLoadable(() => import('../page/index'))
@@ -6,16 +6,7 @@ const Note = withLoadable(() => import('../page/note'))
 const NotFound = withLoadable(() => import('../component/notFound'))
 const Cooperation = withLoadable(() => import('../component/cooperation'))
 
-interface routerInfoType {
-	path: string
-	exact: boolean
-	component: ReactElement
-	title: string
-	meta: object
-	routes: routerInfoType[] | undefined | null
-}
-
-const router: { routes: routerInfoType[] } = {
+const router: { routes: RouteConfig[] } = {
 	routes: [
 		{
 			path: '/',
