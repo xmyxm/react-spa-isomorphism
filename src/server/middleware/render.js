@@ -49,7 +49,7 @@ function render(router, fsMap) {
 				/// const script = new vm.Script(code, { filename: `server_ssr_${urlPath}.js` })
 				vm.runInContext(code, sandbox)
 
-				const { default: pageComponent } = sandbox.exports || sandbox.module.exports
+				const { default: pageComponent } = sandbox.module.exports || sandbox.exports
 				if (pageComponent.sslLoad) {
 					await pageComponent.sslLoad(ctx)
 				}
