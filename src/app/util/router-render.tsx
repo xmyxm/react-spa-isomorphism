@@ -1,9 +1,8 @@
-import { Routes, Route } from 'react-router-dom'
 import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
+import { Routes, Route } from 'react-router-dom'
 import { RouteConfig } from 'react-router-config'
-import router from '../router'
 import { ReactElement } from 'react'
-
+import router from '../router'
 
 const parentRoutePath = ''
 

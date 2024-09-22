@@ -1,16 +1,14 @@
 import { StaticRouter } from 'react-router-dom/server'
+import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux'
-import { createStore } from './store/note'
 import RouterRender from './util/router-render'
+import initStore from './util/router-ssrdata'
+import { createStore } from './store/note'
 import '../style/note.less'
 
-const initialState = typeof window === 'object' ? (window as any).__INITIAL_STATE__ : {}
+const store = createStore({})
 
-const store = createStore(initialState)
-
-export function Note(ctx) {
-	const url = ctx.href
-	const path = ctx.path
+function Index(url, path) {
 	return (
 		<Provider store={store}>
 			<StaticRouter location={url} basename={path}>
@@ -19,3 +17,11 @@ export function Note(ctx) {
 		</Provider>
 	)
 }
+
+export default async function render(ctx) {
+	const { url, path } = ctx
+	await initStore(ctx, store)
+	const root = ReactDOMServer.renderToString(<Index url={url} path={path} />)
+	return root
+}
+
