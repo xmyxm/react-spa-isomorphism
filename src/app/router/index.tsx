@@ -7,10 +7,12 @@ const NotFound = withLoadable(() => import('../component/notFound'))
 const Cooperation = withLoadable(() => import('../component/cooperation'))
 
 interface RouterInfoType {
+	baseName: string
 	routes: RouteConfig[]
 }
 
 const router: RouterInfoType = {
+	baseName: '/',
 	routes: [
 		{
 			path: '/',
