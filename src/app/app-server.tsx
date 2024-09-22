@@ -25,6 +25,6 @@ export default async function render(ctx) {
 	const state = store.getState()
 	return {
 		contentHtml: root,
-		initalState: state
+		initalState: state,
 	}
 }
