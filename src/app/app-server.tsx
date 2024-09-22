@@ -3,9 +3,8 @@ import ReactDOMServer from 'react-dom/server'
 import { Provider } from 'react-redux'
 import RouterRender from './util/router-render'
 import initStore from './util/router-ssrdata'
-import { createStore } from './store/note'
+import { createStore } from './store/index'
 import router from './router/index'
-import '../style/note.less'
 
 const store = createStore({})
 

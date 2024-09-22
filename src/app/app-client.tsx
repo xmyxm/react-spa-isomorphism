@@ -1,10 +1,9 @@
 import { BrowserRouter } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import { createStore } from './store/note'
 import RouterRender from './util/router-render'
+import { createStore } from './store/index'
 import router from './router/index'
-import '../style/note.less'
 
 const initialState = typeof window === 'object' ? (window as any).__INITIAL_STATE__ : {}
 
