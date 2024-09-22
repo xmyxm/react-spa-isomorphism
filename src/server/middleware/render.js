@@ -49,15 +49,9 @@ function render(router, fsMap) {
 				/// const script = new vm.Script(code, { filename: `server_ssr_${urlPath}.js` })
 				vm.runInContext(code, sandbox)
 
-				const { default: pageComponent } = sandbox.module.exports || sandbox.exports
-				if (pageComponent.sslLoad) {
-					await pageComponent.sslLoad(ctx)
-				}
-				let initalState = null
-				if (pageComponent.sslState) {
-					initalState = pageComponent.sslState()
-				}
-				const contentHtml = renderToString(pageComponent())
+				const { default: renderAction } = sandbox.module.exports || sandbox.exports
+
+				const { contentHtml, initalState } = await renderAction(ctx)
 				// console.log(contentHtml)
 				// 创建一个沙箱环境
 				// const sandbox = { module: {}, console, require, process, global }

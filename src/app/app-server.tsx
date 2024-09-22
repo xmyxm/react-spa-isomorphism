@@ -22,5 +22,9 @@ export default async function render(ctx) {
 	const { url, path } = ctx
 	await initStore(ctx, store)
 	const root = ReactDOMServer.renderToString(<Index url={url} path={path} />)
-	return root
+	const state = store.getState()
+	return {
+		contentHtml: root,
+		initalState: state
+	}
 }
