@@ -6,7 +6,7 @@ const Note = withLoadable(() => import('../page/note'))
 const NotFound = withLoadable(() => import('../component/notFound'))
 const Cooperation = withLoadable(() => import('../component/cooperation'))
 
-interface RouterInfoType {
+export interface RouterInfoType {
 	baseName: string
 	routes: RouteConfig[]
 }

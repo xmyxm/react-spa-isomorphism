@@ -10,12 +10,10 @@ const initialState = typeof window === 'object' ? (window as any).__INITIAL_STAT
 
 const store = createStore(initialState)
 
-const routerBaseName = (window as any).__ROUTER_BASENAME__
-
 export function Index() {
 	return (
 		<Provider store={store}>
-			<BrowserRouter basename={routerBaseName}>
+			<BrowserRouter basename={router.baseName}>
 				<RouterRender router={router} />
 			</BrowserRouter>
 		</Provider>
