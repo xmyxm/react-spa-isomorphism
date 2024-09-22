@@ -92,23 +92,9 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			template: './src/html/index.html',
 			filename: 'index.html', // 可以使用hash命名
-			title: '书签',
+			title: 'SPA SSR',
 			inject: 'body', // 脚本包含到body 也可以写到head里面
-			chunks: ['index'], // 指定当前模板需要打入哪些js模块
-			favicon: path.resolve('./src/favicon/favicon-32x32.png'),
-			scriptLoading: 'defer', // 支持非阻塞 javascript 加载 ( 'defer') 以提高页面启动性能
-			minify: {
-				// 启用代码压缩
-				removeComments: false, // 移除注释
-				collapseWhitespace: false, // 移除空格
-			},
-		}),
-		new HtmlWebpackPlugin({
-			template: './src/html/note.html',
-			filename: 'note.html', // 可以使用hash命名
-			title: '文章',
-			inject: 'body', // 脚本包含到body 也可以写到head里面
-			chunks: ['note'], // 指定当前模板需要打入哪些js模块
+			chunks: ['app'], // 指定当前模板需要打入哪些js模块
 			favicon: path.resolve('./src/favicon/favicon-32x32.png'),
 			scriptLoading: 'defer', // 支持非阻塞 javascript 加载 ( 'defer') 以提高页面启动性能
 			minify: {

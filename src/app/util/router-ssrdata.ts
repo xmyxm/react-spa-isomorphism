@@ -6,14 +6,14 @@ export default async function initStore(ctx, store) {
 	await Promise.all(
 		matchs.map(({ route }) => {
 			// @ts-ignore
-			if (route.component.asyncData) {
+			if (route.component.sslLoad) {
 				// @ts-ignore
-				return route.component.asyncData(null, store)
+				return route.component.sslLoad(null, store)
 				// @ts-ignore
 			} else if (route.component.load) {
 				// @ts-ignore
 				return route.component.load().then(res => {
-					return res.default.asyncData ? res.default.asyncData(null, store) : null
+					return res.default.sslLoad ? res.default.sslLoad(null, store) : null
 				})
 			}
 			return Promise.resolve()
