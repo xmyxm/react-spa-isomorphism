@@ -6,7 +6,11 @@ const Note = withLoadable(() => import('../page/note'))
 const NotFound = withLoadable(() => import('../component/notFound'))
 const Cooperation = withLoadable(() => import('../component/cooperation'))
 
-const router: { routes: RouteConfig[] } = {
+interface RouterInfoType {
+	routes: RouteConfig[]
+}
+
+const router: RouterInfoType = {
 	routes: [
 		{
 			path: '/',
