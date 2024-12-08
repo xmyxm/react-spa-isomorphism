@@ -1,4 +1,3 @@
-import { RouteConfig } from 'react-router-config'
 import withLoadable from '../util/withLoadable'
 
 const Index = withLoadable(() => import('../page/index'))
@@ -8,7 +7,7 @@ const Cooperation = withLoadable(() => import('../component/cooperation'))
 
 export interface RouterInfoType {
 	baseName: string
-	routes: RouteConfig[]
+	routes: any[]
 }
 
 const router: RouterInfoType = {

@@ -1,6 +1,4 @@
-import { renderRoutes, RouteConfigComponentProps } from 'react-router-config'
 import { Routes, Route } from 'react-router-dom'
-import { RouteConfig } from 'react-router-config'
 import { ReactElement } from 'react'
 import { RouterInfoType } from '../router'
 
@@ -21,9 +19,26 @@ function join(parentPath: string = '', path: string = '') {
 	return parentPath + path
 }
 
-function render(route: RouteConfig, parentRoutePath: string, props: RouteConfigComponentProps): React.ReactNode {
+function deepRender(route: any, parentRoutePath: string): ReactElement {
+	return (
+		<Routes>
+			{route.routes.map((route: any, idx) => (
+				<Route
+					key={idx}
+					path={join(parentRoutePath, route.path as string)}
+					// @ts-ignore
+					element={(props: RouteConfigComponentProps<{}>) =>
+						deepRender(route, join(parentRoutePath, route.path as string))
+					}
+				/>
+			))}
+		</Routes>
+	)
+}
+
+function render(route: any, parentRoutePath: string, props: any): React.ReactNode {
 	const Component = route.component
-	const routes = renderRoutes(route.routes, parentRoutePath)
+	const routes = route.routes ? deepRender(route.routes, parentRoutePath) : null
 
 	if (Component) {
 		return <Component {...props}> {routes} </Component>
@@ -39,7 +54,7 @@ export interface RouterRenderPropsType {
 export default function RouterRender(props: RouterRenderPropsType): ReactElement {
 	return (
 		<Routes>
-			{props.router.routes.map((route: RouteConfig, idx) => (
+			{props.router.routes.map((route: any, idx) => (
 				<Route
 					key={idx}
 					path={join(parentRoutePath, route.path as string)}

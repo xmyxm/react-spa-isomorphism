@@ -1,9 +1,7 @@
-import Loadable from 'react-loadable'
-
 const Loading = () => <div>Loading...</div>
 
 const withLoadable = comp => {
-	return Loadable({
+	return require('react-loadable')({
 		loader: comp,
 		loading: Loading,
 	})
